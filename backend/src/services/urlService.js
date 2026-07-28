@@ -1,5 +1,5 @@
 
-const { insertUrl , updateCode} = require('../repository/urlRepository');
+const { insertUrl , updateCode , findByCode} = require('../repository/urlRepository');
 const { encode } = require('../utils/base62'); // adjust the path to wherever your file actually lives
 async function shortenUrl(longUrl){
      const id = await insertUrl(longUrl);
@@ -8,8 +8,14 @@ async function shortenUrl(longUrl){
         return code;
 }
 
-
-module.exports = { shortenUrl };
+  async function getLongUrl(code) {
+     const longUrl = await findByCode(code);
+     if(longUrl==null){
+        console.log(" cant fetch url");
+        return null;
+     }return longUrl;
+  }
+module.exports = { shortenUrl , getLongUrl};
 
 
 

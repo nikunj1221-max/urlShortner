@@ -13,5 +13,14 @@ async function updateCode(id,code){
    
   await pool.query('UPDATE short_urls SET code = $1 WHERE id = $2', [code ,id]);
            }
-
-module.exports= { insertUrl, updateCode}
+async function findByCode(code) {
+  const result = await pool.query('SELECT long_url FROM short_urls WHERE code = $1', [code]);
+  
+  if (result.rows.length === 0) {
+    console.log("no url found for this code");
+    return null;
+  }
+  
+  return result.rows[0].long_url;
+}
+module.exports= { insertUrl, updateCode , findByCode}
