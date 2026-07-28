@@ -22,9 +22,5 @@ function decode(str) {
    }
   return result;
 }
-console.log(encode(125)); // "21"
-console.log(encode(1));   // "1"
-console.log(encode(0));   // "0"
-console.log(encode(3844)); // 3844 = 62*62, should be "100"
-console.log(decode(encode(125)));
-console.log(decode("21"));
+
+module.exports = { encode, decode };
