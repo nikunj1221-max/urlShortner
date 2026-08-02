@@ -23,4 +23,8 @@ async function findByCode(code) {
   
   return result.rows[0].long_url;
 }
-module.exports= { insertUrl, updateCode , findByCode}
+
+async function incrementClickCount(code) {
+    await pool.query('Update short_urls set click_count =click_count + 1  where code =$1',[code ] )
+}
+module.exports= { insertUrl, updateCode , findByCode , incrementClickCount}
