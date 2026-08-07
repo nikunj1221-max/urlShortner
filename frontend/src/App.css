@@ -81,24 +81,51 @@
 @media (max-width: 760px) { .fold-landing .nav-links { display: none; } }
 
 /* ---------- HERO ---------- */
+.fold-landing .main1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  padding: 0px 10px;
+}
+
+@media (max-width: 900px) {
+  .fold-landing .main1 {
+    flex-direction: column-reverse;
+  }
+}
+
+.fold-landing .mvp {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .fold-landing .hero {
+  flex: 1;
   position: relative;
-  padding: clamp(56px, 9vw, 100px) clamp(20px, 6vw, 72px) clamp(48px, 8vw, 96px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  overflow: hidden;
+  text-align: left; /* adjust alignment */
+  padding: 0;
+}
+
+.fold-landing .hero-copy {
+  align-items: flex-start;
+  text-align: left;
 }
 
 .fold-landing .hero-art {
   position: relative;
   width: 100%;
-  max-width: 1180px;
-  min-height: 520px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* left align text section */
 }
 
 .fold-landing .paper-sheet {

@@ -21,7 +21,7 @@ export default function Nav() {
         <a href="#features">Features</a>
       </div>
       <a href="#demo" className="nav-cta">
-        Start snipping
+        Sign up
       </a>
     </nav>
   );
