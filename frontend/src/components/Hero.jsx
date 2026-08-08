@@ -19,7 +19,17 @@ export default function Hero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary" type="button">
+            <button 
+              className="btn-primary" 
+              type="button"
+              onClick={() => {
+                const input = document.getElementById('url-input');
+                if (input) {
+                  input.focus();
+                  input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+              }}
+            >
               Now snip it
               <svg viewBox="0 0 16 16" fill="none">
                 <path

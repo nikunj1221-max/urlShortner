@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRef } from 'react';
 
 export default function FoldDemo() {
   const [url, setUrl] = useState('');
@@ -9,7 +10,14 @@ export default function FoldDemo() {
   const [showStats, setShowStats] = useState(false);
   const [stats, setStats] = useState(null);
   const [statsLoading, setStatsLoading] = useState(false);
-
+     const searchInputRef = useRef(null);
+     
+  // 2. Define the click handler to focus the input field
+  // const handleButtonClick = () => {
+  //   if (searchInputRef.current) {
+  //     searchInputRef.current.focus();
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!url) return;
@@ -71,9 +79,11 @@ export default function FoldDemo() {
       <div className="fold-stage" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '12px', width: '100%', flexWrap: 'wrap' }}>
           <input 
+            id="url-input"
             type="text" 
             required 
             value={url}
+             ref={searchInputRef} 
             onChange={(e) => setUrl(e.target.value)}
             placeholder="Paste your long link here"
             style={{
