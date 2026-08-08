@@ -1,4 +1,4 @@
-const { shortenUrl, getLongUrl } = require('../services/urlService');
+const { shortenUrl, getLongUrl, getAnalytics } = require('../services/urlService');
 const { incrementClickCount } = require('../repository/urlRepository');
 
 async function handleShortenUrl(req, res) {
@@ -30,7 +30,34 @@ async function handleGetLongUrl(req, res) {
   }
 }
 
+async function handleGetAnalytics(req, res) {
+  try {
+    const code = req.params.code;
+    const stats = await getAnalytics(code);
+    if (!stats) {
+      return res.status(404).json({ message: "analytics not found" });
+    }
+    res.json(stats);
+  } catch (err) {
+    console.error("error getting analytics:", err);
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+
+async function handleGetAllAnalytics(req, res) {
+  try {
+    const { getAllAnalytics } = require('../services/urlService');
+    const stats = await getAllAnalytics();
+    res.json(stats);
+  } catch (err) {
+    console.error("error getting all analytics:", err);
+    res.status(500).json({ message: "something went wrong" });
+  }
+}
+
 module.exports = {
   handleShortenUrl,
-  handleGetLongUrl
+  handleGetLongUrl,
+  handleGetAnalytics,
+  handleGetAllAnalytics
 };

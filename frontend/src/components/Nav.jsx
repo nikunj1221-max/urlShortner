@@ -1,6 +1,6 @@
-export default function Nav() {
+export default function Nav({ onOpenAuth, onOpenAllStats }) {
   return (
-    <nav>
+    <nav >
       <div className="logo">
         <span className="logo-mark">
           <svg viewBox="0 0 24 24" fill="none">
@@ -19,10 +19,19 @@ export default function Nav() {
         <a href="#demo">Product</a>
         <a href="#how">How it works</a>
         <a href="#features">Features</a>
+
       </div>
-      <a href="#demo" className="nav-cta">
+      <div  >    
+             {/* <button 
+            //  onClick={(e) => { e.preventDefault(); onOpenAllStats(); }} 
+             className="nav-cta" style={{ background: 'black', border: 'none', cursor: 'pointer', fontFamily: 'inherit',  marginRight:'10px'}}>
+        Link Stats
+      </button> */}
+      <button onClick={(e) => { e.preventDefault(); onOpenAuth(); }} className="nav-cta" style={{ background: 'black', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
         Sign up
-      </a>
+      </button>
+      </div>
+
     </nav>
   );
 }

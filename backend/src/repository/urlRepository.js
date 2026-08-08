@@ -27,4 +27,16 @@ async function incrementClickCount(code) {
   await pool.query('UPDATE short_urls SET click_count = click_count + 1 WHERE code = $1', [code]);
 }
 
-module.exports = { insertUrl, updateCode, findByCode, incrementClickCount };
+async function getAnalyticsByCode(code) {
+  const result = await pool.query('SELECT long_url, click_count, created_at FROM short_urls WHERE code = $1', [code]);
+  
+  if (result.rows.length === 0) {
+    return null;
+  }}
+async function getAllAnalytics() {
+   
+  const result = await pool.query('SELECT code, long_url, click_count, created_at FROM short_urls ORDER BY created_at DESC');
+  return result.rows;
+}
+
+module.exports = { insertUrl, updateCode, findByCode, incrementClickCount, getAnalyticsByCode, getAllAnalytics }; 

@@ -1,4 +1,4 @@
-const { insertUrl, updateCode, findByCode } = require('../repository/urlRepository');
+const { insertUrl, updateCode, findByCode, getAnalyticsByCode } = require('../repository/urlRepository');
 const { encode } = require('../utils/base62');
 const redisClient = require('../db/redisClient');
 
@@ -23,4 +23,12 @@ async function getLongUrl(code) {
   return longUrl;
 }
 
-module.exports = { shortenUrl, getLongUrl };
+async function getAnalytics(code) {
+  return await getAnalyticsByCode(code);
+}
+
+async function getAllAnalytics() {
+  return await require('../repository/urlRepository').getAllAnalytics();
+}
+
+module.exports = { shortenUrl, getLongUrl, getAnalytics, getAllAnalytics };
