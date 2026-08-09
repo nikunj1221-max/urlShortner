@@ -8,7 +8,8 @@ async function handleShortenUrl(req, res) {
     }
     const longUrl = req.body.longUrl;
     const code = await shortenUrl(longUrl);
-   res.status(201).json({ shortUrl: `${process.env.BASE_URL}/api/${code}` });
+    const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+    res.status(201).json({ shortUrl: `${baseUrl}/api/${code}` });
   } catch (err) {
     console.error("error shortening url:", err);
     res.status(500).json({ message: "something went wrong" });
