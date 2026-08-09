@@ -94,7 +94,7 @@
 
 @media (max-width: 900px) {
   .fold-landing .main1 {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 }
 
