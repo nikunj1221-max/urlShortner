@@ -118,9 +118,9 @@ export default function FoldDemo() {
                   className="btn-ghost"
                   style={{ padding: '8px 16px', fontSize: '0.85rem' }}
                 >
-                  {showStats ? 'Hide Stats' : 'View Stats'}
+                  {showStats ? 'Hide Stats' : 'click Stats'}
                 </button>
-                <button 
+                <button
                   type="button"
                   onClick={() => navigator.clipboard.writeText(shortUrl)}
                   className="btn-ghost"
