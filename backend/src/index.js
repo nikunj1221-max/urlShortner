@@ -10,7 +10,7 @@ const app = express();
 // ⚠️ FIX: Allow requests from Vercel (and local) 
 const corsOptions = {
   origin: [
-    'https://my-next-app-123.vercel.app', // YOUR Vercel preview URL
+    'https://url-shortner-rho-pied.vercel.app', // YOUR Vercel preview URL
     'http://localhost:3000',              // Your Next.js dev server
     'http://localhost:5173',              // Your Vite dev server
   ],
