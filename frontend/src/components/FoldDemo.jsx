@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRef } from 'react';
-
+const API_URL = import.meta.env.VITE_API_URL || 'https://urlshortner-exex.onrender.com';
 export default function FoldDemo() {
   const [url, setUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
@@ -33,7 +33,7 @@ export default function FoldDemo() {
       if (!finalUrl.match(/^https?:\/\//i)) {
         finalUrl = 'http://' + finalUrl;
       }
-      const response = await fetch('/api/shorten', {
+      const response = await fetch(`${API_URL}/api/shorten`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ longUrl: finalUrl })
@@ -55,7 +55,7 @@ export default function FoldDemo() {
     setStatsLoading(true);
     try {
       const code = shortUrl.split('/').pop();
-      const res = await fetch(`/api/${code}/stats`);
+      const res = await fetch(`${API_URL}/api/${code}/stats`);
       const data = await res.json();
       if (res.ok) {
         setStats(data);
