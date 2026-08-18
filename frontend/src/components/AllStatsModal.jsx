@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../context/AuthContext';
 
 export default function AllStatsModal({ onClose }) {
   const [stats, setStats] = useState([]);
@@ -6,7 +7,9 @@ export default function AllStatsModal({ onClose }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/stats/all')
+    fetch(`${API_BASE_URL}/api/stats/all`, {
+      credentials: 'include'
+    })
       .then(res => res.json())
       .then(data => {
         setStats(data);

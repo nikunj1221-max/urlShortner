@@ -3,8 +3,11 @@ const pool = require('../db/pool');
 // Conceptually: creates a brand new row in your short_urls table, but at this point you only have the long URL. 
 // You don't have a code yet, because code is generated from the row's id, and you don't have an id until the row exists. 
 // This function's job is: "create the row, hand me back the id Postgres just generated for it."
-async function insertUrl(longUrl) {
-  const result = await pool.query('INSERT INTO short_urls (long_url) VALUES ($1) RETURNING id', [longUrl]);
+async function insertUrl(longUrl, userId = null) {
+  const result = await pool.query(
+    'INSERT INTO short_urls (long_url, user_id) VALUES ($1, $2) RETURNING id',
+    [longUrl, userId]
+  );
   return result.rows[0].id;
 }
 

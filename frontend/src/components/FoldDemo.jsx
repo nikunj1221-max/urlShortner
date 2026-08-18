@@ -36,6 +36,7 @@ export default function FoldDemo() {
       const response = await fetch(`${API_URL}/api/shorten`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ longUrl: finalUrl })
       });
       

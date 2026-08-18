@@ -7,7 +7,8 @@ async function handleShortenUrl(req, res) {
       return res.status(400).json({ message: "bad request" });
     }
     const longUrl = req.body.longUrl;
-    const code = await shortenUrl(longUrl);
+    const userId = req.user ? req.user.userId : null;
+    const code = await shortenUrl(longUrl, userId);
     const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
     res.status(201).json({ shortUrl: `${baseUrl}/api/${code}` });
   } catch (err) {
