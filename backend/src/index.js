@@ -38,7 +38,7 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api', urlRoutes);
-
+app.get('/:code', handleGetLongUrl); 
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
@@ -47,4 +47,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
   await initUserTable();
-});
+});
