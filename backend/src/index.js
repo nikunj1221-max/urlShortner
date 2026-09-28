@@ -6,6 +6,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const urlRoutes = require('./routes/urlRoutes');
 const authRoutes = require('./routes/authRoutes');
+const { handleGetLongUrl } = require('./controllers/urlController'); // add this
+
 const { initUserTable } = require('./repository/userRepository');
 
 const app = express();
@@ -36,12 +38,13 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
-app.use('/api/auth', authRoutes);
-app.use('/api', urlRoutes);
-app.get('/:code', handleGetLongUrl); 
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
+app.use('/api/auth', authRoutes);
+app.use('/api', urlRoutes);
+app.get('/:code', handleGetLongUrl); 
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, async () => {
